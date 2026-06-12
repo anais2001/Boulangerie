@@ -3,56 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kōen — Sushi Bar & Omakase</title>
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Noto+Serif+JP:wght@300;400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <title>Au Four d'Antan — Boulangerie Artisanale</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Caveat:wght@500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --noir: #0A0A0A;
-      --noir-chaud: #141414;
-      --noir-doux: #1C1C1C;
-      --or: #B8960C;
-      --or-clair: #D4AF37;
-      --or-pale: #E8D5A0;
-      --rouge: #8B0000;
-      --rouge-vif: #C41E3A;
-      --blanc: #F0EDE8;
-      --blanc-doux: #C8C4BC;
-      --gris: #2A2A2A;
+      --brun: #2C1810;
+      --brun-moyen: #5C3317;
+      --ocre: #C17A2E;
+      --ocre-clair: #D4943F;
+      --creme: #F5ECD7;
+      --beige: #E8D5B0;
+      --beige-fonce: #D4BC8E;
+      --farine: #FBF7F0;
+      --rouge-brique: #8B3A2A;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--noir);
-      color: var(--blanc);
+      font-family: 'Lora', serif;
+      background: var(--farine);
+      color: var(--brun);
       overflow-x: hidden;
-    }
-
-    /* ── CURSEUR CUSTOM ── */
-    body { cursor: none; }
-    .cursor {
-      position: fixed;
-      width: 8px; height: 8px;
-      background: var(--or-clair);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.15s ease;
-      transform: translate(-50%, -50%);
-    }
-    .cursor-ring {
-      position: fixed;
-      width: 36px; height: 36px;
-      border: 1px solid var(--or);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transition: transform 0.35s ease, width 0.3s, height 0.3s, opacity 0.3s;
-      transform: translate(-50%, -50%);
-      opacity: 0.6;
     }
 
     /* ── NAV ── */
@@ -63,1202 +37,1036 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 5vw;
-      height: 72px;
-      background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
-      backdrop-filter: blur(2px);
-      transition: background 0.4s;
+      padding: 0 6vw;
+      height: 68px;
+      background: rgba(251,247,240,0.96);
+      border-bottom: 1px solid var(--beige);
+      backdrop-filter: blur(8px);
+      transition: box-shadow 0.3s;
     }
 
-    nav.scrolled {
-      background: rgba(10,10,10,0.97);
-      border-bottom: 1px solid rgba(184,150,12,0.15);
-    }
+    nav.scrolled { box-shadow: 0 4px 24px rgba(44,24,16,0.08); }
 
     .nav-logo {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 1.5rem;
-      color: var(--or-clair);
-      letter-spacing: 0.12em;
+      display: flex;
+      flex-direction: column;
       text-decoration: none;
     }
 
-    .nav-logo span {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.75rem;
-      color: var(--blanc-doux);
-      display: block;
-      letter-spacing: 0.25em;
-      margin-top: -2px;
-      opacity: 0.6;
+    .nav-logo-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brun);
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .nav-logo-sub {
+      font-family: 'Caveat', cursive;
+      font-size: 0.85rem;
+      color: var(--ocre);
+      letter-spacing: 0.05em;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
+      gap: 2.2rem;
       list-style: none;
     }
 
     .nav-links a {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--blanc-doux);
+      font-family: 'Lora', serif;
+      font-size: 0.82rem;
+      color: var(--brun);
       text-decoration: none;
-      opacity: 0.7;
+      opacity: 0.6;
       transition: opacity 0.2s, color 0.2s;
+      letter-spacing: 0.04em;
     }
 
-    .nav-links a:hover { opacity: 1; color: var(--or-clair); }
-
-    .nav-cta {
-      background: none;
-      border: 1px solid var(--or);
-      color: var(--or-clair) !important;
-      padding: 0.5rem 1.4rem !important;
-      opacity: 1 !important;
-      transition: background 0.2s !important;
-    }
-
-    .nav-cta:hover { background: rgba(184,150,12,0.1) !important; }
+    .nav-links a:hover { opacity: 1; color: var(--ocre); }
 
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
       position: relative;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
-      justify-content: center;
+      padding: 80px 6vw 60px;
+      gap: 4rem;
       overflow: hidden;
     }
 
+    /* image de fond hero */
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1600&q=85');
+      background-image: url('https://images.unsplash.com/photo-1464195244916-405fa0a82545?w=1600&q=80');
       background-size: cover;
       background-position: center;
-      filter: brightness(0.3);
-      transform: scale(1.05);
-      transition: transform 8s ease;
+      opacity: 0.07;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    .hero-bg.loaded { transform: scale(1); }
-
-    .hero-overlay {
+    /* texture fond subtile */
+    .hero::before {
+      content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(10,10,10,0.6) 0%, rgba(139,0,0,0.08) 100%);
-    }
-
-    /* kanji vertical filigrane */
-    .kanji-bg {
-      position: absolute;
-      right: 8vw;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(8rem, 18vw, 20rem);
-      color: rgba(184,150,12,0.06);
-      writing-mode: vertical-rl;
-      line-height: 1;
-      user-select: none;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(193,122,46,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(44,24,16,0.04) 0%, transparent 50%);
       pointer-events: none;
-      letter-spacing: 0.1em;
+      z-index: 1;
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 0 5vw;
-    }
+    .hero-text { position: relative; z-index: 2; }
 
-    .hero-jp {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.4em;
-      color: var(--or);
-      text-transform: uppercase;
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: 'Caveat', cursive;
+      font-size: 1.1rem;
+      color: var(--ocre);
       margin-bottom: 1.5rem;
-      opacity: 0.85;
+    }
+
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--ocre);
+      opacity: 0.5;
     }
 
     .hero-title {
-      font-family: 'Shippori Mincho', serif;
-      font-size: clamp(3.5rem, 9vw, 8rem);
-      font-weight: 400;
-      line-height: 1;
-      letter-spacing: 0.08em;
-      color: var(--blanc);
-      margin-bottom: 0.3rem;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--brun);
+      margin-bottom: 1.5rem;
     }
 
-    .hero-subtitle-jp {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(1rem, 2.5vw, 1.6rem);
-      color: var(--or-clair);
-      letter-spacing: 0.3em;
-      margin-bottom: 2rem;
-      font-weight: 300;
+    .hero-title em {
+      font-style: italic;
+      color: var(--ocre);
     }
 
     .hero-desc {
-      font-size: 0.9rem;
-      font-weight: 300;
-      letter-spacing: 0.08em;
-      color: var(--blanc-doux);
-      opacity: 0.75;
-      max-width: 480px;
-      margin: 0 auto 3rem;
-      line-height: 1.8;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--brun);
+      opacity: 0.7;
+      max-width: 440px;
+      margin-bottom: 2.5rem;
     }
 
-    .hero-btns {
+    .hero-actions {
       display: flex;
-      gap: 1.2rem;
-      justify-content: center;
+      align-items: center;
+      gap: 2rem;
       flex-wrap: wrap;
     }
 
-    .btn-primary {
-      background: var(--or);
-      color: var(--noir);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 1rem 2.5rem;
+    .btn-main {
+      background: var(--brun);
+      color: var(--creme);
+      font-family: 'Lora', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      padding: 0.95rem 2.2rem;
       text-decoration: none;
+      border-radius: 2px;
       transition: background 0.2s, transform 0.15s;
-      border: none;
-      cursor: none;
     }
 
-    .btn-primary:hover { background: var(--or-clair); transform: translateY(-2px); }
+    .btn-main:hover { background: var(--brun-moyen); transform: translateY(-2px); }
 
-    .btn-outline {
-      background: none;
-      border: 1px solid rgba(240,237,232,0.3);
-      color: var(--blanc);
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 1rem 2.5rem;
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
-      cursor: none;
+    .hero-horaire {
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      color: var(--brun);
+      opacity: 0.55;
     }
 
-    .btn-outline:hover { border-color: var(--or); color: var(--or-clair); }
+    .hero-horaire strong { color: var(--ocre); opacity: 1; }
 
-    .hero-scroll {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
+    /* grille images hero */
+    .hero-imgs {
+      position: relative;
       z-index: 2;
-    }
-
-    .hero-scroll span {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--blanc-doux);
-      opacity: 0.4;
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 50px;
-      background: linear-gradient(to bottom, var(--or), transparent);
-      animation: scrollDown 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollDown {
-      0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
-      50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
-      100% { opacity: 0; transform: scaleY(1); transform-origin: bottom; }
-    }
-
-    /* ── PHILOSOPHIE ── */
-    .section-philo {
-      padding: 120px 5vw;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
-      background: var(--noir-chaud);
+      grid-template-rows: 240px 180px;
+      gap: 10px;
+    }
+
+    .hero-imgs img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 3px;
+    }
+
+    .hero-imgs img:first-child { grid-row: span 2; }
+
+    .hero-badge {
+      position: absolute;
+      bottom: -16px; left: -20px;
+      background: var(--ocre);
+      color: var(--farine);
+      padding: 1rem 1.4rem;
+      border-radius: 3px;
+      z-index: 5;
+    }
+
+    .hero-badge-nb {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .hero-badge-label {
+      font-family: 'Caveat', cursive;
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    /* ── BANDEAU ── */
+    .bandeau {
+      background: var(--brun);
+      padding: 0.8rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-top: 40px;
+    }
+
+    .bandeau-inner {
+      display: inline-flex;
+      animation: defile 28s linear infinite;
+    }
+
+    .bandeau-item {
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      color: var(--creme);
+      padding: 0 2.5rem;
+      opacity: 0.85;
+    }
+
+    .bandeau-sep { color: var(--ocre); opacity: 0.6; }
+
+    @keyframes defile {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── SAVOIR-FAIRE ── */
+    .section-savoir {
+      padding: 100px 6vw;
+      background: var(--creme);
       position: relative;
       overflow: hidden;
     }
 
-    .section-philo::before {
-      content: '哲学';
-      position: absolute;
-      left: -2rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-family: 'Noto Serif JP', serif;
-      font-size: 22rem;
-      color: rgba(255,255,255,0.02);
-      writing-mode: vertical-rl;
-      user-select: none;
-      line-height: 1;
+    .savoir-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
     }
 
-    .philo-img-wrap {
-      position: relative;
-    }
+    .savoir-img-wrap { position: relative; }
 
-    .philo-img {
+    .savoir-img {
       width: 100%;
-      height: 520px;
+      height: 500px;
       object-fit: cover;
+      border-radius: 3px;
       display: block;
-      filter: brightness(0.85);
     }
 
-    .philo-img-accent {
+    .savoir-img-overlay {
       position: absolute;
-      top: -20px; left: -20px;
-      width: 120px; height: 120px;
-      border-top: 1px solid var(--or);
-      border-left: 1px solid var(--or);
-      opacity: 0.5;
+      bottom: 2rem; right: -2rem;
+      background: var(--brun);
+      color: var(--creme);
+      padding: 1.5rem 1.8rem;
+      max-width: 220px;
+      border-left: 3px solid var(--ocre);
     }
 
-    .philo-img-accent2 {
-      position: absolute;
-      bottom: -20px; right: -20px;
-      width: 120px; height: 120px;
-      border-bottom: 1px solid var(--or);
-      border-right: 1px solid var(--or);
-      opacity: 0.5;
+    .savoir-img-overlay p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .savoir-img-overlay cite {
+      display: block;
+      font-family: 'Caveat', cursive;
+      font-size: 0.85rem;
+      color: var(--ocre);
+      margin-top: 0.8rem;
+      font-style: normal;
     }
 
     .eyebrow {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--or);
+      font-family: 'Caveat', cursive;
+      font-size: 1.1rem;
+      color: var(--ocre);
       display: block;
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.8rem;
     }
 
     .section-title {
-      font-family: 'Shippori Mincho', serif;
+      font-family: 'Playfair Display', serif;
       font-size: clamp(1.8rem, 3vw, 2.8rem);
-      font-weight: 400;
-      line-height: 1.25;
-      color: var(--blanc);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--brun);
       margin-bottom: 1.8rem;
     }
 
-    .section-title em {
-      color: var(--or-clair);
-      font-style: italic;
-    }
+    .section-title em { font-style: italic; color: var(--ocre); }
 
-    .philo-text p {
-      font-size: 0.92rem;
-      font-weight: 300;
+    .savoir-text p {
+      font-size: 0.95rem;
       line-height: 1.9;
-      color: var(--blanc-doux);
-      opacity: 0.8;
+      color: var(--brun);
+      opacity: 0.75;
       margin-bottom: 1.2rem;
     }
 
-    .philo-stats {
+    .valeurs {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
       margin-top: 2.5rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
     }
 
-    .stat-nb {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 2.2rem;
-      color: var(--or-clair);
-      line-height: 1;
+    .valeur {
+      padding: 1.2rem;
+      background: var(--farine);
+      border-radius: 3px;
+      border-left: 2px solid var(--beige-fonce);
+    }
+
+    .valeur-titre {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--brun);
       margin-bottom: 0.3rem;
     }
 
-    .stat-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      color: var(--blanc-doux);
-      opacity: 0.55;
-      text-transform: uppercase;
-    }
-
-    /* ── MENUS ── */
-    .section-menus {
-      padding: 100px 5vw;
-      background: var(--noir);
-    }
-
-    .menus-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .menus-header .section-title { margin-bottom: 0; }
-
-    /* Onglets */
-    .menu-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 0;
-      margin: 2.5rem 0 3rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .menu-tab {
-      background: none;
-      border: none;
-      color: var(--blanc-doux);
-      font-family: 'Inter', sans-serif;
+    .valeur-desc {
       font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 1rem 2rem 1.2rem;
-      cursor: none;
-      position: relative;
-      opacity: 0.5;
-      transition: opacity 0.25s, color 0.25s;
-      white-space: nowrap;
+      line-height: 1.6;
+      color: var(--brun);
+      opacity: 0.55;
     }
 
-    .menu-tab::after {
+    /* ── PAINS ── */
+    .section-pains {
+      padding: 100px 6vw;
+      background: var(--farine);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .produits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .produit-card {
+      background: var(--farine);
+      border: 1px solid var(--beige);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+
+    .produit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(44,24,16,0.1);
+      border-color: var(--beige-fonce);
+    }
+
+    .produit-img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .produit-body {
+      padding: 1.4rem 1.5rem 1.6rem;
+    }
+
+    .produit-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--brun);
+      margin-bottom: 0.4rem;
+    }
+
+    .produit-desc {
+      font-size: 0.8rem;
+      line-height: 1.65;
+      color: var(--brun);
+      opacity: 0.6;
+      margin-bottom: 1rem;
+    }
+
+    /* étiquette kraft */
+    .produit-prix-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .etiquette {
+      display: inline-block;
+      background: var(--beige);
+      border: 1px solid var(--beige-fonce);
+      border-radius: 2px;
+      padding: 0.3rem 0.8rem;
+      position: relative;
+    }
+
+    .etiquette::before {
       content: '';
       position: absolute;
-      bottom: -1px; left: 0; right: 0;
-      height: 1px;
-      background: var(--or-clair);
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
+      left: -6px; top: 50%;
+      transform: translateY(-50%);
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--farine);
+      border: 1px solid var(--beige-fonce);
     }
 
-    .menu-tab.active {
-      opacity: 1;
-      color: var(--or-clair);
+    .etiquette-prix {
+      font-family: 'Caveat', cursive;
+      font-size: 1.25rem;
+      color: var(--brun);
+      font-weight: 600;
     }
 
-    .menu-tab.active::after { transform: scaleX(1); }
-    .menu-tab:hover { opacity: 0.85; }
-
-    .menu-panel { display: none; }
-    .menu-panel.active { display: block; }
-
-    /* Omakase — layout spécial */
-    .omakase-intro {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 4rem;
+    .produit-tag {
+      font-family: 'Caveat', cursive;
+      font-size: 0.8rem;
+      color: var(--ocre);
+      letter-spacing: 0.05em;
     }
 
-    .omakase-intro p {
-      font-size: 0.9rem;
-      font-weight: 300;
-      line-height: 1.9;
-      color: var(--blanc-doux);
-      opacity: 0.75;
+    /* ── VIENNOISERIES ── */
+    .section-viennoiseries {
+      padding: 100px 6vw;
+      background: var(--creme);
     }
 
-    .omakase-price {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 3rem;
-      color: var(--or-clair);
-      margin: 1rem 0 0.3rem;
-    }
-
-    .omakase-price-note {
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      color: var(--blanc-doux);
-      opacity: 0.45;
-      text-transform: uppercase;
-    }
-
-    .omakase-courses {
+    .viennoiseries-featured {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.05);
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
     }
 
-    .course-item {
-      background: var(--noir);
-      padding: 2rem 2.2rem;
+    .viennoiseries-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+    }
+
+    .vcard {
       position: relative;
-      transition: background 0.25s;
+      overflow: hidden;
+      border-radius: 3px;
+      cursor: default;
     }
 
-    .course-item:hover { background: var(--noir-chaud); }
-
-    .course-num {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.7rem;
-      color: var(--or);
-      letter-spacing: 0.2em;
-      margin-bottom: 0.8rem;
-      opacity: 0.7;
-    }
-
-    .course-name {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 1.15rem;
-      color: var(--blanc);
-      margin-bottom: 0.2rem;
-    }
-
-    .course-name-jp {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.8rem;
-      color: var(--or-clair);
-      opacity: 0.6;
-      margin-bottom: 0.8rem;
-    }
-
-    .course-desc {
-      font-size: 0.8rem;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--blanc-doux);
-      opacity: 0.6;
-    }
-
-    /* Sushi grid */
-    .sushi-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .sushi-card {
-      display: flex;
-      gap: 1.5rem;
-      padding: 1.5rem;
-      border: 1px solid rgba(255,255,255,0.06);
-      transition: border-color 0.25s, background 0.25s;
-      align-items: flex-start;
-    }
-
-    .sushi-card:hover {
-      border-color: rgba(184,150,12,0.3);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .sushi-img {
-      width: 80px;
-      height: 80px;
+    .vcard img {
+      width: 100%; height: 100%;
       object-fit: cover;
-      flex-shrink: 0;
-      filter: brightness(0.9);
+      display: block;
+      transition: transform 0.5s ease;
+      min-height: 200px;
     }
 
-    .sushi-info { flex: 1; }
+    .vcard:hover img { transform: scale(1.04); }
 
-    .sushi-name {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 1rem;
-      color: var(--blanc);
-      margin-bottom: 0.15rem;
+    .vcard-featured img { min-height: 380px; }
+
+    .vcard-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(44,24,16,0.75) 0%, transparent 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.4rem 1.5rem;
     }
 
-    .sushi-name-jp {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.72rem;
-      color: var(--or);
-      opacity: 0.65;
-      margin-bottom: 0.6rem;
-    }
-
-    .sushi-desc {
-      font-size: 0.78rem;
-      font-weight: 300;
-      line-height: 1.6;
-      color: var(--blanc-doux);
-      opacity: 0.55;
-      margin-bottom: 0.8rem;
-    }
-
-    .sushi-prix {
-      font-family: 'Shippori Mincho', serif;
+    .vcard-nom {
+      font-family: 'Playfair Display', serif;
       font-size: 1.1rem;
-      color: var(--or-clair);
-    }
-
-    /* Carte de saison */
-    .saison-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1px;
-      background: rgba(255,255,255,0.04);
-    }
-
-    .saison-item {
-      background: var(--noir);
-      padding: 1.8rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      transition: background 0.2s;
-    }
-
-    .saison-item:hover { background: var(--noir-chaud); }
-
-    .saison-name {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 1rem;
-      color: var(--blanc);
+      font-weight: 700;
+      color: var(--creme);
       margin-bottom: 0.2rem;
     }
 
-    .saison-desc {
-      font-size: 0.75rem;
-      font-weight: 300;
-      color: var(--blanc-doux);
-      opacity: 0.5;
-      line-height: 1.5;
-    }
+    .vcard-featured .vcard-nom { font-size: 1.4rem; }
 
-    .saison-prix {
-      font-family: 'Shippori Mincho', serif;
+    .vcard-prix {
+      font-family: 'Caveat', cursive;
       font-size: 1rem;
-      color: var(--or-clair);
-      white-space: nowrap;
-      flex-shrink: 0;
+      color: var(--ocre-clair);
     }
 
-    /* Boissons */
-    .boissons-sections { display: flex; flex-direction: column; gap: 3rem; }
-
-    .boisson-categorie-title {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 1.3rem;
-      color: var(--or-clair);
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid rgba(184,150,12,0.2);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .boisson-categorie-title span {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.8rem;
-      color: var(--blanc-doux);
-      opacity: 0.4;
-    }
-
-    .boissons-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 0 4rem;
-    }
-
-    .boisson-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      gap: 1rem;
-    }
-
-    .boisson-nom {
-      font-size: 0.9rem;
-      color: var(--blanc);
-      margin-bottom: 0.2rem;
-    }
-
-    .boisson-note {
-      font-size: 0.73rem;
-      font-weight: 300;
-      color: var(--blanc-doux);
-      opacity: 0.45;
-    }
-
-    .boisson-prix {
-      font-family: 'Shippori Mincho', serif;
-      color: var(--or-clair);
-      white-space: nowrap;
-      font-size: 0.95rem;
-    }
-
-    /* ── CHEF ── */
-    .section-chef {
-      padding: 120px 5vw;
-      background: var(--noir-chaud);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
+    /* ── FORMULES ── */
+    .section-formules {
+      padding: 80px 6vw;
+      background: var(--brun);
       position: relative;
       overflow: hidden;
     }
 
-    .section-chef::after {
-      content: '料理人';
+    .section-formules::before {
+      content: '🥐';
       position: absolute;
-      right: -1rem;
-      bottom: -3rem;
-      font-family: 'Noto Serif JP', serif;
       font-size: 18rem;
-      color: rgba(255,255,255,0.02);
-      writing-mode: vertical-rl;
-      user-select: none;
+      opacity: 0.04;
+      right: 5vw;
+      top: 50%;
+      transform: translateY(-50%);
+      filter: grayscale(1);
     }
 
-    .chef-text { position: relative; z-index: 2; }
-    .chef-text p {
-      font-size: 0.92rem;
-      font-weight: 300;
-      line-height: 1.9;
-      color: var(--blanc-doux);
-      opacity: 0.75;
-      margin-bottom: 1.2rem;
-    }
+    .section-formules .eyebrow { color: var(--ocre-clair); }
+    .section-formules .section-title { color: var(--creme); }
 
-    .chef-signature {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 1.8rem;
-      color: var(--or-clair);
-      margin-top: 2rem;
-      font-style: italic;
-    }
-
-    .chef-img-wrap {
+    .formules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
       position: relative;
       z-index: 2;
     }
 
-    .chef-img {
-      width: 100%;
-      height: 560px;
-      object-fit: cover;
-      object-position: top;
-      filter: brightness(0.8) grayscale(20%);
-    }
-
-    .chef-badge {
-      position: absolute;
-      bottom: 2rem; left: -2rem;
-      background: var(--rouge);
-      padding: 1.2rem 1.6rem;
-      border-left: 3px solid var(--or);
-    }
-
-    .chef-badge-title {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--blanc-doux);
-      opacity: 0.6;
-      margin-bottom: 0.3rem;
-    }
-
-    .chef-badge-name {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 1.2rem;
-      color: var(--blanc);
-    }
-
-    /* ── RESERVATION ── */
-    .section-resa {
-      padding: 120px 5vw;
-      background: var(--noir);
+    .formule-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 2.5rem 2rem;
+      border-radius: 3px;
+      transition: background 0.25s, border-color 0.25s;
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
 
-    .section-resa::before {
-      content: '予約';
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Noto Serif JP', serif;
-      font-size: 30rem;
-      color: rgba(184,150,12,0.03);
-      user-select: none;
-      pointer-events: none;
-    }
-
-    .resa-content { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
-
-    .resa-content .section-title { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 1.5rem; }
-
-    .resa-content p {
-      font-size: 0.9rem;
-      font-weight: 300;
-      line-height: 1.9;
-      color: var(--blanc-doux);
-      opacity: 0.65;
-      margin-bottom: 3rem;
-    }
-
-    .resa-infos {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .resa-info-item { text-align: center; }
-
-    .resa-info-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--or);
-      display: block;
-      margin-bottom: 0.4rem;
-    }
-
-    .resa-info-value {
-      font-family: 'Shippori Mincho', serif;
-      font-size: 1rem;
-      color: var(--blanc);
-    }
-
-    .resa-divider {
-      width: 1px;
+    .formule-card:hover {
       background: rgba(255,255,255,0.08);
-      align-self: stretch;
+      border-color: rgba(193,122,46,0.4);
+    }
+
+    .formule-card.star {
+      background: var(--ocre);
+      border-color: var(--ocre);
+    }
+
+    .formule-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+    .formule-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--creme);
+      margin-bottom: 0.5rem;
+    }
+
+    .formule-card.star .formule-nom { color: var(--brun); }
+
+    .formule-prix {
+      font-family: 'Caveat', cursive;
+      font-size: 2.2rem;
+      color: var(--ocre-clair);
+      margin: 0.8rem 0;
+      line-height: 1;
+    }
+
+    .formule-card.star .formule-prix { color: var(--brun); }
+
+    .formule-desc {
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: var(--creme);
+      opacity: 0.6;
+    }
+
+    .formule-card.star .formule-desc { color: var(--brun); opacity: 0.75; }
+
+    .formule-badge {
+      display: inline-block;
+      background: var(--rouge-brique);
+      color: white;
+      font-family: 'Caveat', cursive;
+      font-size: 0.78rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 2px;
+      margin-bottom: 1rem;
     }
 
     /* ── INFOS ── */
     .section-infos {
-      padding: 80px 5vw;
-      background: var(--noir-chaud);
-      border-top: 1px solid rgba(184,150,12,0.1);
+      padding: 80px 6vw;
+      background: var(--farine);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 4rem;
     }
 
-    .info-bloc-title {
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--or);
+    .info-titre {
+      font-family: 'Caveat', cursive;
+      font-size: 1.2rem;
+      color: var(--ocre);
       margin-bottom: 1.2rem;
       display: block;
     }
 
-    .info-bloc p {
-      font-size: 0.88rem;
-      font-weight: 300;
+    .info-content {
+      font-size: 0.9rem;
       line-height: 1.9;
-      color: var(--blanc-doux);
-      opacity: 0.65;
+      color: var(--brun);
+      opacity: 0.7;
     }
 
     .horaires-table {
       display: grid;
       grid-template-columns: auto 1fr;
       gap: 0.3rem 1.5rem;
-      font-size: 0.85rem;
     }
 
-    .h-jour {
-      color: var(--blanc-doux);
-      opacity: 0.5;
-      font-weight: 300;
-    }
-
-    .h-heure {
-      color: var(--blanc-doux);
-      opacity: 0.8;
-      font-weight: 300;
-    }
-
+    .h-jour { font-weight: 500; font-size: 0.88rem; color: var(--brun); opacity: 0.6; }
+    .h-heure { font-size: 0.88rem; color: var(--brun); opacity: 0.85; }
     .h-ferme { opacity: 0.3; font-style: italic; }
+
+    .carte-placeholder {
+      background: var(--beige);
+      border-radius: 3px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+      color: var(--brun);
+      opacity: 0.4;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
 
     /* ── FOOTER ── */
     footer {
-      background: #050505;
-      padding: 2.5rem 5vw;
+      background: var(--brun);
+      padding: 2.5rem 6vw;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
-      border-top: 1px solid rgba(255,255,255,0.04);
     }
 
     .footer-logo {
-      font-family: 'Shippori Mincho', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
-      color: var(--or-clair);
-      letter-spacing: 0.1em;
+      color: var(--creme);
+      font-weight: 700;
     }
 
     .footer-copy {
-      font-size: 0.72rem;
-      color: var(--blanc-doux);
-      opacity: 0.3;
-      letter-spacing: 0.08em;
-    }
-
-    .footer-socials {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-socials a {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--blanc-doux);
+      font-size: 0.75rem;
+      color: var(--creme);
       opacity: 0.35;
-      text-decoration: none;
-      transition: opacity 0.2s;
     }
-
-    .footer-socials a:hover { opacity: 0.8; color: var(--or-clair); }
 
     /* ── ANIMATIONS ── */
     .fade-up {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
 
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .section-philo,
-      .section-chef { grid-template-columns: 1fr; gap: 3rem; }
-      .philo-img-wrap, .chef-img-wrap { display: none; }
+      .hero { grid-template-columns: 1fr; padding-top: 90px; }
+      .hero-imgs { display: none; }
+      .savoir-grid { grid-template-columns: 1fr; }
+      .savoir-img-wrap { display: none; }
+      .viennoiseries-featured { grid-template-columns: 1fr 1fr; }
+      .viennoiseries-row { grid-template-columns: 1fr 1fr; }
+      .formules-grid { grid-template-columns: 1fr; }
       .section-infos { grid-template-columns: 1fr; gap: 2.5rem; }
       .nav-links { display: none; }
-      .kanji-bg { display: none; }
-      .resa-divider { display: none; }
+      .valeurs { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Curseur custom -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
   <!-- NAV -->
   <nav id="nav">
     <a href="#" class="nav-logo">
-      Kōen
-      <span>光 縁 · Sushi Bar</span>
+      <span class="nav-logo-main">Au Four d'Antan</span>
+      <span class="nav-logo-sub">✦ Boulangerie artisanale depuis 2015</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#philosophie">Philosophie</a></li>
-      <li><a href="#menus">Menus</a></li>
-      <li><a href="#chef">Chef</a></li>
-      <li><a href="#reservation" class="nav-cta">Réserver</a></li>
+      <li><a href="#savoir">Notre métier</a></li>
+      <li><a href="#pains">Pains</a></li>
+      <li><a href="#viennoiseries">Viennoiseries</a></li>
+      <li><a href="#infos">Nous trouver</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero-bg" id="heroBg"></div>
-    <div class="hero-overlay"></div>
-    <div class="kanji-bg">光縁</div>
-
-    <div class="hero-content">
-      <span class="hero-jp">Tokyo · Paris · Omakase</span>
-      <h1 class="hero-title">Kōen</h1>
-      <div class="hero-subtitle-jp">光 縁</div>
-      <p class="hero-desc">
-        L'art du sushi dans sa forme la plus pure. Une expérience omakase où chaque geste est héritage, chaque saveur une révélation.
-      </p>
-      <div class="hero-btns">
-        <a href="#reservation" class="btn-primary">Réserver une table</a>
-        <a href="#menus" class="btn-outline">Découvrir les menus</a>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-text">
+      <span class="hero-eyebrow">Artisan boulanger depuis 2015</span>
+      <h1 class="hero-title">Le pain comme<br>on <em>le faisait</em><br>autrefois</h1>
+      <p class="hero-desc">Chaque matin depuis plus de cinquante ans, notre four s'allume avant l'aube. Farines locales, levain naturel, gestes transmis de père en fils.</p>
+      <div class="hero-actions">
+        <a href="#pains" class="btn-main">Voir nos pains</a>
+        <span class="hero-horaire">Ouvert <strong>6h30 – 20h</strong> · 6j/7</span>
       </div>
     </div>
 
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- PHILOSOPHIE -->
-  <section class="section-philo" id="philosophie">
-    <div class="philo-img-wrap fade-up">
-      <img class="philo-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85" alt="Sushi préparation" />
-      <div class="philo-img-accent"></div>
-      <div class="philo-img-accent2"></div>
-    </div>
-    <div class="philo-text fade-up">
-      <span class="eyebrow">Notre philosophie</span>
-      <h2 class="section-title">L'excellence par<br><em>la simplicité</em></h2>
-      <p>Kōen est né d'une conviction : les ingrédients d'exception n'ont besoin de rien d'autre que d'une main experte pour révéler toute leur splendeur.</p>
-      <p>Chaque matin, nos poissons arrivent directement du marché de Tsukiji à Tokyo et de Rungis. Chaque pièce est traitée comme une œuvre — façonnée, présentée, savourée.</p>
-      <div class="philo-stats">
-        <div>
-          <div class="stat-nb">14</div>
-          <div class="stat-label">Services par semaine</div>
-        </div>
-        <div>
-          <div class="stat-nb">8</div>
-          <div class="stat-label">Places par service</div>
-        </div>
-        <div>
-          <div class="stat-nb">20+</div>
-          <div class="stat-label">Années d'expérience</div>
-        </div>
+    <div class="hero-imgs fade-up">
+      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&q=85" alt="Pain artisanal" />
+      <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc7c?w=400&q=80" alt="Croissants" />
+      <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=400&q=80" alt="Fournil" />
+      <div class="hero-badge">
+        <div class="hero-badge-nb">10+</div>
+        <div class="hero-badge-label">ans de tradition</div>
       </div>
     </div>
   </section>
 
-  <!-- MENUS -->
-  <section class="section-menus" id="menus">
-    <div class="menus-header fade-up">
-      <span class="eyebrow">Nos menus</span>
-      <h2 class="section-title">Une carte, quatre <em>univers</em></h2>
+  <!-- BANDEAU -->
+  <div class="bandeau">
+    <div class="bandeau-inner">
+      <span class="bandeau-item">🥖 Baguette tradition</span><span class="bandeau-item bandeau-sep">·</span>
+      <span class="bandeau-item">🥐 Croissant au beurre</span><span class="bandeau-item bandeau-sep">·</span>
+      <span class="bandeau-item">🍞 Pain de campagne</span><span class="bandeau-item bandeau-sep">·</span>
+      <span class="bandeau-item">🫓 Pain aux céréales</span><span class="bandeau-item bandeau-sep">·</span>
+      <span class="bandeau-item">🥨 Pain de seigle</span><span class="bandeau-item bandeau-sep">·</span>
+      <span class="bandeau-item">🧁 Pain au chocolat</span><span class="bandeau-item bandeau-sep">·</span>
+      <span class="bandeau-item">🥖 Baguette tradition</span><span class="bandeau-item bandeau-sep">·</span>
+      <span class="bandeau-item">🥐 Croissant au beurre</span><span class="bandeau-item bandeau-sep">·</span>
+      <span class="bandeau-item">🍞 Pain de campagne</span><span class="bandeau-item bandeau-sep">·</span>
+      <span class="bandeau-item">🫓 Pain aux céréales</span><span class="bandeau-item bandeau-sep">·</span>
+      <span class="bandeau-item">🥨 Pain de seigle</span><span class="bandeau-item bandeau-sep">·</span>
+      <span class="bandeau-item">🧁 Pain au chocolat</span><span class="bandeau-item bandeau-sep">·</span>
     </div>
+  </div>
 
-    <div class="menu-tabs" role="tablist">
-      <button class="menu-tab active" onclick="switchTab(this, 'omakase')" role="tab">Omakase</button>
-      <button class="menu-tab" onclick="switchTab(this, 'sushi')" role="tab">Sushi & Sashimi</button>
-      <button class="menu-tab" onclick="switchTab(this, 'saison')" role="tab">Carte de saison</button>
-      <button class="menu-tab" onclick="switchTab(this, 'boissons')" role="tab">Boissons</button>
-    </div>
-
-    <!-- OMAKASE -->
-    <div class="menu-panel active" id="panel-omakase">
-      <div class="omakase-intro">
-        <p>Le chef compose pour vous un voyage en 10 services. Le menu évolue au fil des saisons, selon les arrivages du jour. Chaque table est une première.</p>
-        <div class="omakase-price">180 €</div>
-        <div class="omakase-price-note">par personne · accord mets & saké en option +65€</div>
+  <!-- SAVOIR-FAIRE -->
+  <section class="section-savoir" id="savoir">
+    <div class="savoir-grid">
+      <div class="savoir-img-wrap fade-up">
+        <img class="savoir-img" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=700&q=85" alt="Boulanger au travail" />
+        <div class="savoir-img-overlay">
+          <p>Le levain, c'est vivant. Ça se nourrit, ça se respecte.</p>
+          <cite>— Marcel Dupont, fondateur</cite>
+        </div>
       </div>
-      <div class="omakase-courses">
-        <div class="course-item"><div class="course-num">一 · Service 1</div><div class="course-name">Amuse-bouche</div><div class="course-name-jp">お通し · Otōshi</div><div class="course-desc">Bouchée de saison pour éveiller le palais. Composition du chef selon l'arrivage.</div></div>
-        <div class="course-item"><div class="course-num">二 · Service 2</div><div class="course-name">Sashimi du jour</div><div class="course-name-jp">刺身 · Sashimi</div><div class="course-desc">Thon, daurade royale et Saint-Jacques. Tranchés à la minute, servis sur glace.</div></div>
-        <div class="course-item"><div class="course-num">三 · Service 3</div><div class="course-name">Soupe miso blanc</div><div class="course-name-jp">味噌汁 · Misoshiru</div><div class="course-desc">Dashi de bonite, miso shiro de Kyoto, tofu soyeux et wakamé.</div></div>
-        <div class="course-item"><div class="course-num">四 · Service 4</div><div class="course-name">Nigiris de saison</div><div class="course-name-jp">握り · Nigiri</div><div class="course-desc">Cinq nigiris choisis par le chef. Riz vinaigré à la température du poignet.</div></div>
-        <div class="course-item"><div class="course-num">五 · Service 5</div><div class="course-name">Tataki de thon rouge</div><div class="course-name-jp">叩き · Tataki</div><div class="course-desc">Ventrèche de thon bluefin snackée, ponzu yuzu, gingembre frais.</div></div>
-        <div class="course-item"><div class="course-num">六 · Service 6</div><div class="course-name">Tempura légère</div><div class="course-name-jp">天ぷら · Tenpura</div><div class="course-desc">Crevettes de Méditerranée et légumes de saison en tempura fine, sel Maldon.</div></div>
-        <div class="course-item"><div class="course-num">七 · Service 7</div><div class="course-name">Pièce signature</div><div class="course-name-jp">特製 · Tokusei</div><div class="course-desc">La création exclusive du chef, renouvelée chaque semaine.</div></div>
-        <div class="course-item"><div class="course-num">八 · Service 8</div><div class="course-name">Rouleau spécial</div><div class="course-name-jp">巻き · Maki</div><div class="course-desc">Maki Kōen : king crab, avocat, truffe noire de Périgord.</div></div>
-        <div class="course-item"><div class="course-num">九 · Service 9</div><div class="course-name">Gunkan & Tobiko</div><div class="course-name-jp">軍艦 · Gunkan</div><div class="course-desc">Oursin Hokkaido, œufs de saumon et de truite, algue nori grillée.</div></div>
-        <div class="course-item"><div class="course-num">十 · Service 10</div><div class="course-name">Dessert japonais</div><div class="course-name-jp">甘味 · Kanmi</div><div class="course-desc">Mochi glacé au matcha grand cru, coulis de fruits rouges.</div></div>
-      </div>
-    </div>
 
-    <!-- SUSHI & SASHIMI -->
-    <div class="menu-panel" id="panel-sushi">
-      <div class="sushi-grid">
-        <div class="sushi-card"><img class="sushi-img" src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=200&q=80" alt="Thon"/><div class="sushi-info"><div class="sushi-name">Thon rouge Bluefin</div><div class="sushi-name-jp">本鮪 · Honmaguro</div><div class="sushi-desc">Ventrèche de thon sauvage de l'Atlantique. 2 pièces.</div><div class="sushi-prix">24 €</div></div></div>
-        <div class="sushi-card"><img class="sushi-img" src="https://images.unsplash.com/photo-1617196034099-5b28536f7db1?w=200&q=80" alt="Saumon"/><div class="sushi-info"><div class="sushi-name">Saumon Atlantique</div><div class="sushi-name-jp">鮭 · Sake</div><div class="sushi-desc">Saumon Label Rouge, chair fondante, légèrement flambé. 2 pièces.</div><div class="sushi-prix">16 €</div></div></div>
-        <div class="sushi-card"><img class="sushi-img" src="https://images.unsplash.com/photo-1559410545-0bdcd187e0a6?w=200&q=80" alt="Saint-Jacques"/><div class="sushi-info"><div class="sushi-name">Saint-Jacques Bretagne</div><div class="sushi-name-jp">帆立 · Hotate</div><div class="sushi-desc">Coquille Saint-Jacques de la baie de Saint-Brieuc. 2 pièces.</div><div class="sushi-prix">22 €</div></div></div>
-        <div class="sushi-card"><img class="sushi-img" src="https://images.unsplash.com/photo-1617196034238-66b2b0032029?w=200&q=80" alt="Daurade"/><div class="sushi-info"><div class="sushi-name">Daurade royale</div><div class="sushi-name-jp">鯛 · Tai</div><div class="sushi-desc">Daurade de Méditerranée, huile de sésame, micro-shiso. 2 pièces.</div><div class="sushi-prix">18 €</div></div></div>
-        <div class="sushi-card"><img class="sushi-img" src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=200&q=80" alt="Oursin"/><div class="sushi-info"><div class="sushi-name">Oursin Hokkaido</div><div class="sushi-name-jp">雲丹 · Uni</div><div class="sushi-desc">Gunkan oursin de Hokkaido, une des pièces les plus rares de notre carte.</div><div class="sushi-prix">32 €</div></div></div>
-        <div class="sushi-card"><img class="sushi-img" src="https://images.unsplash.com/photo-1617196035154-1e7e6e28b0db?w=200&q=80" alt="Anguille"/><div class="sushi-info"><div class="sushi-name">Anguille grillée</div><div class="sushi-name-jp">鰻 · Unagi</div><div class="sushi-desc">Anguille lacquée sauce tare maison, grillée au charbon de bois. 2 pièces.</div><div class="sushi-prix">20 €</div></div></div>
-      </div>
-    </div>
-
-    <!-- CARTE DE SAISON -->
-    <div class="menu-panel" id="panel-saison">
-      <div style="text-align:center; margin-bottom: 3rem;" class="omakase-intro">
-        <p>Notre carte de saison change chaque mois. Elle suit les arrivages et les inspirations du chef, à la croisée de la tradition japonaise et du terroir français.</p>
-      </div>
-      <div class="saison-grid">
-        <div class="saison-item"><div><div class="saison-name">Tartare de thon & truffe</div><div class="saison-desc">Condiment yuzu-kosho, chips de riz soufflé</div></div><div class="saison-prix">38 €</div></div>
-        <div class="saison-item"><div><div class="saison-name">Huîtres & granité saké</div><div class="saison-desc">Huîtres Gillardeau n°2, granité saké-citron vert</div></div><div class="saison-prix">28 €</div></div>
-        <div class="saison-item"><div><div class="saison-name">Ramen truffe noire</div><div class="saison-desc">Bouillon shio 12h, truffe Périgord, chashu wagyu</div></div><div class="saison-prix">42 €</div></div>
-        <div class="saison-item"><div><div class="saison-name">Bœuf Wagyu A5</div><div class="saison-desc">Tataki wagyu, sauce ponzu-yuzu, daikon râpé</div></div><div class="saison-prix">58 €</div></div>
-        <div class="saison-item"><div><div class="saison-name">Homard en dashi</div><div class="saison-desc">Homard breton, bouillon dashi kombu, beurre noisette</div></div><div class="saison-prix">64 €</div></div>
-        <div class="saison-item"><div><div class="saison-name">Mochi glacé matcha</div><div class="saison-desc">Matcha Uji grand cru, coulis fraise des bois</div></div><div class="saison-prix">14 €</div></div>
-        <div class="saison-item"><div><div class="saison-name">Tofu soyeux & dashi</div><div class="saison-desc">Tofu artisanal, bonite fumée, huile de sésame grillé</div></div><div class="saison-prix">16 €</div></div>
-        <div class="saison-item"><div><div class="saison-name">Gyoza croustillants</div><div class="saison-desc">Farce wagyu & champignons sauvages, sauce ponzu</div></div><div class="saison-prix">22 €</div></div>
-      </div>
-    </div>
-
-    <!-- BOISSONS -->
-    <div class="menu-panel" id="panel-boissons">
-      <div class="boissons-sections">
-
-        <div>
-          <div class="boisson-categorie-title">Sakés <span>日本酒</span></div>
-          <div class="boissons-list">
-            <div class="boisson-item"><div><div class="boisson-nom">Dassai 23 Junmai Daiginjo</div><div class="boisson-note">Yamaguchi · Fruité, délicat · 15.5%</div></div><div class="boisson-prix">18 € / cl</div></div>
-            <div class="boisson-item"><div><div class="boisson-nom">Hakkaisan Yukimuro</div><div class="boisson-note">Niigata · Vieilli sous neige · 17%</div></div><div class="boisson-prix">22 € / cl</div></div>
-            <div class="boisson-item"><div><div class="boisson-nom">Kubota Manjyu</div><div class="boisson-note">Niigata · Sec et élégant · 15%</div></div><div class="boisson-prix">16 € / cl</div></div>
-            <div class="boisson-item"><div><div class="boisson-nom">Juyondai Honmaru</div><div class="boisson-note">Yamagata · Rare, fruité · 16%</div></div><div class="boisson-prix">28 € / cl</div></div>
+      <div class="savoir-text fade-up">
+        <span class="eyebrow">✦ Notre savoir-faire</span>
+        <h2 class="section-title">Un métier qui<br>se transmet,<br><em>pas qui s'invente</em></h2>
+        <p>Ici, rien n'est pressé. Notre levain a plus de trente ans. Nos farines viennent du moulin Dupré, à quarante kilomètres d'ici, moulues sur meule de pierre.</p>
+        <p>La fermentation lente, la nuit entière, c'est ce qui donne au pain son goût profond, sa mie alvéolée et sa croûte qui chante quand on la brise.</p>
+        <div class="valeurs">
+          <div class="valeur">
+            <div class="valeur-titre">🌾 Farine locale</div>
+            <div class="valeur-desc">Moulin Dupré, meule de pierre, blé de Beauce.</div>
+          </div>
+          <div class="valeur">
+            <div class="valeur-titre">🧫 Levain naturel</div>
+            <div class="valeur-desc">30 ans d'âge, entretenu chaque jour.</div>
+          </div>
+          <div class="valeur">
+            <div class="valeur-titre">🔥 Cuisson au four</div>
+            <div class="valeur-desc">Four à sole, chaleur douce et homogène.</div>
+          </div>
+          <div class="valeur">
+            <div class="valeur-titre">⏳ Fermentation lente</div>
+            <div class="valeur-desc">12 à 16h de pousse pour un goût profond.</div>
           </div>
         </div>
-
-        <div>
-          <div class="boisson-categorie-title">Whiskies Japonais <span>ウイスキー</span></div>
-          <div class="boissons-list">
-            <div class="boisson-item"><div><div class="boisson-nom">Hibiki Harmony</div><div class="boisson-note">Suntory · Blend · 43%</div></div><div class="boisson-prix">24 € / cl</div></div>
-            <div class="boisson-item"><div><div class="boisson-nom">Yamazaki 12 ans</div><div class="boisson-note">Single Malt · Fruité, boisé · 43%</div></div><div class="boisson-prix">32 € / cl</div></div>
-            <div class="boisson-item"><div><div class="boisson-nom">Nikka From the Barrel</div><div class="boisson-note">Blend · Puissant · 51.4%</div></div><div class="boisson-prix">20 € / cl</div></div>
-          </div>
-        </div>
-
-        <div>
-          <div class="boisson-categorie-title">Thés & Sans alcool <span>お茶</span></div>
-          <div class="boissons-list">
-            <div class="boisson-item"><div><div class="boisson-nom">Matcha cérémonie</div><div class="boisson-note">Uji grand cru, préparé à la chasen</div></div><div class="boisson-prix">12 €</div></div>
-            <div class="boisson-item"><div><div class="boisson-nom">Gyokuro froid</div><div class="boisson-note">Uji · Infusion lente 4h · Umami intense</div></div><div class="boisson-prix">10 €</div></div>
-            <div class="boisson-item"><div><div class="boisson-nom">Eau de source Ōshimizu</div><div class="boisson-note">Source du mont Fuji</div></div><div class="boisson-prix">8 €</div></div>
-            <div class="boisson-item"><div><div class="boisson-nom">Yuzu lemonade maison</div><div class="boisson-note">Yuzu frais, shiso, eau pétillante</div></div><div class="boisson-prix">9 €</div></div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- CHEF -->
-  <section class="section-chef" id="chef">
-    <div class="chef-text fade-up">
-      <span class="eyebrow">Le chef</span>
-      <h2 class="section-title">Vingt ans de <em>transmission</em></h2>
-      <p>Formé à Tokyo sous la tutelle du maître Hiroshi Tanaka pendant sept ans, Kenji Mori est revenu en France avec une obsession : faire vivre la tradition du sushi-ya dans toute sa rigueur et sa générosité.</p>
-      <p>Pour lui, l'omakase n'est pas un menu — c'est une conversation entre le chef et son hôte. Une confiance offerte, un savoir-faire engagé en retour.</p>
-      <p>Son riz, préparé selon une recette transmise oralement, reste le secret le mieux gardé de Kōen.</p>
-      <div class="chef-signature">Kenji Mori</div>
+  <!-- PAINS -->
+  <section class="section-pains" id="pains">
+    <div class="section-header fade-up">
+      <div>
+        <span class="eyebrow">✦ Nos pains</span>
+        <h2 class="section-title">Du four à votre table</h2>
+      </div>
     </div>
-    <div class="chef-img-wrap fade-up">
-      <img class="chef-img" src="https://images.unsplash.com/photo-1607631568010-a87245c0daf8?w=700&q=85" alt="Chef Kenji Mori" />
-      <div class="chef-badge">
-        <div class="chef-badge-title">Chef & fondateur</div>
-        <div class="chef-badge-name">Kenji Mori</div>
+
+    <div class="produits-grid">
+      <div class="produit-card fade-up">
+        <img class="produit-img" src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=500&q=80" alt="Baguette tradition" />
+        <div class="produit-body">
+          <div class="produit-nom">Baguette Tradition</div>
+          <div class="produit-desc">Farine T65, levain naturel, façonnage à la main. Croûte fine et croustillante, mie crémeuse.</div>
+          <div class="produit-prix-wrap">
+            <div class="etiquette"><span class="etiquette-prix">1,30 €</span></div>
+            <span class="produit-tag">Notre best-seller</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="produit-card fade-up">
+        <img class="produit-img" src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?w=500&q=80" alt="Pain de campagne" />
+        <div class="produit-body">
+          <div class="produit-nom">Pain de Campagne</div>
+          <div class="produit-desc">Mélange T80 et seigle, fermentation 14h. Croûte épaisse, mie dense aux arômes prononcés.</div>
+          <div class="produit-prix-wrap">
+            <div class="etiquette"><span class="etiquette-prix">4,80 €</span></div>
+            <span class="produit-tag">1 kg</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="produit-card fade-up">
+        <img class="produit-img" src="https://images.unsplash.com/photo-1585478259715-876acc5be8eb?w=500&q=80" alt="Pain aux céréales" />
+        <div class="produit-body">
+          <div class="produit-nom">Pain aux Céréales</div>
+          <div class="produit-desc">Graines de tournesol, lin, sésame et pavot. Riche en fibres, saveur noisette.</div>
+          <div class="produit-prix-wrap">
+            <div class="etiquette"><span class="etiquette-prix">5,20 €</span></div>
+            <span class="produit-tag">800 g</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="produit-card fade-up">
+        <img class="produit-img" src="https://images.unsplash.com/photo-1574085733277-851d9d856a3a?w=500&q=80" alt="Pain de seigle" />
+        <div class="produit-body">
+          <div class="produit-nom">Pain de Seigle</div>
+          <div class="produit-desc">100% farine de seigle de l'Aveyron. Mie compacte, légèrement acidulée, parfait avec du fromage.</div>
+          <div class="produit-prix-wrap">
+            <div class="etiquette"><span class="etiquette-prix">4,50 €</span></div>
+            <span class="produit-tag">700 g</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="produit-card fade-up">
+        <img class="produit-img" src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=500&q=80" alt="Pain épeautre" />
+        <div class="produit-body">
+          <div class="produit-nom">Pain à l'Épeautre</div>
+          <div class="produit-desc">Épeautre ancien bio, digestif et savoureux. Mie aérée, croûte dorée, légèrement sucré.</div>
+          <div class="produit-prix-wrap">
+            <div class="etiquette"><span class="etiquette-prix">5,60 €</span></div>
+            <span class="produit-tag">Bio ✦</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="produit-card fade-up">
+        <img class="produit-img" src="https://images.unsplash.com/photo-1571167019399-79a37ff55ebe?w=500&q=80" alt="Focaccia" />
+        <div class="produit-body">
+          <div class="produit-nom">Focaccia du Jour</div>
+          <div class="produit-desc">Garniture selon la saison — tomates confites, romarin et fleur de sel ou oignons caramélisés.</div>
+          <div class="produit-prix-wrap">
+            <div class="etiquette"><span class="etiquette-prix">3,90 €</span></div>
+            <span class="produit-tag">Nouveauté</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- RÉSERVATION -->
-  <section class="section-resa" id="reservation">
-    <div class="resa-content fade-up">
-      <span class="eyebrow">Réservation</span>
-      <h2 class="section-title">Réservez votre <em>expérience</em></h2>
-      <p>Le comptoir Kōen accueille 8 convives par service, midi et soir. Nous vous recommandons de réserver au minimum deux semaines à l'avance pour l'omakase.</p>
-      <div class="resa-infos">
-        <div class="resa-info-item">
-          <span class="resa-info-label">Déjeuner</span>
-          <div class="resa-info-value">12h00 · 14h30</div>
-        </div>
-        <div class="resa-divider"></div>
-        <div class="resa-info-item">
-          <span class="resa-info-label">Dîner</span>
-          <div class="resa-info-value">19h00 · 22h30</div>
-        </div>
-        <div class="resa-divider"></div>
-        <div class="resa-info-item">
-          <span class="resa-info-label">Couverts</span>
-          <div class="resa-info-value">8 par service</div>
+  <!-- VIENNOISERIES -->
+  <section class="section-viennoiseries" id="viennoiseries">
+    <div class="section-header fade-up">
+      <div>
+        <span class="eyebrow">✦ Viennoiseries</span>
+        <h2 class="section-title">Le beurre, <em>c'est sacré</em></h2>
+      </div>
+    </div>
+
+    <div class="viennoiseries-featured fade-up">
+      <div class="vcard vcard-featured">
+        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=700&q=85" alt="Croissant" />
+        <div class="vcard-overlay">
+          <div class="vcard-nom">Croissant pur beurre</div>
+          <div class="vcard-prix">1,40 €</div>
         </div>
       </div>
-      <a href="https://www.thefork.fr" target="_blank" class="btn-primary">Réserver sur TheFork</a>
+      <div class="vcard">
+        <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc7c?w=400&q=80" alt="Pain au chocolat" />
+        <div class="vcard-overlay">
+          <div class="vcard-nom">Pain au chocolat</div>
+          <div class="vcard-prix">1,60 €</div>
+        </div>
+      </div>
+      <div class="vcard">
+        <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&q=80" alt="Brioche" />
+        <div class="vcard-overlay">
+          <div class="vcard-nom">Brioche tressée</div>
+          <div class="vcard-prix">6,50 €</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="viennoiseries-row fade-up">
+      <div class="vcard">
+        <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=400&q=80" alt="Pain aux raisins" />
+        <div class="vcard-overlay">
+          <div class="vcard-nom">Pain aux raisins</div>
+          <div class="vcard-prix">1,50 €</div>
+        </div>
+      </div>
+      <div class="vcard">
+        <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=400&q=80" alt="Kouign-amann" />
+        <div class="vcard-overlay">
+          <div class="vcard-nom">Kouign-amann</div>
+          <div class="vcard-prix">2,20 €</div>
+        </div>
+      </div>
+      <div class="vcard">
+        <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=400&q=80" alt="Chausson aux pommes" />
+        <div class="vcard-overlay">
+          <div class="vcard-nom">Chausson aux pommes</div>
+          <div class="vcard-prix">1,80 €</div>
+        </div>
+      </div>
+      <div class="vcard">
+        <img src="https://images.unsplash.com/photo-1621955964441-c173e01c135b?w=400&q=80" alt="Escargot pistache" />
+        <div class="vcard-overlay">
+          <div class="vcard-nom">Escargot pistache</div>
+          <div class="vcard-prix">1,90 €</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULES -->
+  <section class="section-formules">
+    <div style="max-width:500px;" class="fade-up">
+      <span class="eyebrow">✦ Nos formules</span>
+      <h2 class="section-title">Pour bien commencer<br><em>la journée</em></h2>
+    </div>
+    <div class="formules-grid">
+      <div class="formule-card fade-up">
+        <div class="formule-icon">☕</div>
+        <div class="formule-nom">Petit-déjeuner</div>
+        <div class="formule-prix">4,50 €</div>
+        <div class="formule-desc">Boisson chaude + viennoiserie au choix. À déguster sur place ou à emporter.</div>
+      </div>
+      <div class="formule-card star fade-up">
+        <div class="formule-badge">⭐ Le plus populaire</div>
+        <div class="formule-icon">🥐</div>
+        <div class="formule-nom">Formule Tradition</div>
+        <div class="formule-prix">6,80 €</div>
+        <div class="formule-desc">Baguette tradition + 2 viennoiseries + boisson chaude. Le matin parfait.</div>
+      </div>
+      <div class="formule-card fade-up">
+        <div class="formule-icon">🍞</div>
+        <div class="formule-nom">Panier du Week-end</div>
+        <div class="formule-prix">14,00 €</div>
+        <div class="formule-desc">Pain de campagne 500g + 4 viennoiseries au choix. À commander la veille.</div>
+      </div>
     </div>
   </section>
 
   <!-- INFOS -->
   <section class="section-infos" id="infos">
-    <div class="info-bloc fade-up">
-      <span class="info-bloc-title">Adresse</span>
-      <p>12 rue des Acacias<br>75017 Paris<br><br>Métro : Argentine (L1)<br>Parking : Étoile</p>
+    <div class="fade-up">
+      <span class="info-titre">📍 Adresse</span>
+      <div class="info-content">
+        18 rue du Four<br>
+        75006 Paris<br><br>
+        Métro : Mabillon (L10)<br>
+        Bus : 39, 63, 70, 86, 96
+      </div>
+      <div class="carte-placeholder">
+        <span>🗺️</span>
+        Intégrez votre Google Maps
+      </div>
     </div>
-    <div class="info-bloc fade-up">
-      <span class="info-bloc-title">Horaires</span>
+
+    <div class="fade-up">
+      <span class="info-titre">🕐 Horaires</span>
       <div class="horaires-table">
-        <span class="h-jour">Lundi</span><span class="h-heure h-ferme">Fermé</span>
-        <span class="h-jour">Mardi</span><span class="h-heure">12h – 14h30 · 19h – 22h30</span>
-        <span class="h-jour">Mercredi</span><span class="h-heure">12h – 14h30 · 19h – 22h30</span>
-        <span class="h-jour">Jeudi</span><span class="h-heure">12h – 14h30 · 19h – 22h30</span>
-        <span class="h-jour">Vendredi</span><span class="h-heure">12h – 14h30 · 19h – 23h</span>
-        <span class="h-jour">Samedi</span><span class="h-heure">19h – 23h</span>
+        <span class="h-jour">Lundi</span><span class="h-heure">6h30 – 20h</span>
+        <span class="h-jour">Mardi</span><span class="h-heure">6h30 – 20h</span>
+        <span class="h-jour">Mercredi</span><span class="h-heure">6h30 – 20h</span>
+        <span class="h-jour">Jeudi</span><span class="h-heure">6h30 – 20h</span>
+        <span class="h-jour">Vendredi</span><span class="h-heure">6h30 – 20h30</span>
+        <span class="h-jour">Samedi</span><span class="h-heure">6h – 20h30</span>
         <span class="h-jour">Dimanche</span><span class="h-heure h-ferme">Fermé</span>
       </div>
     </div>
-    <div class="info-bloc fade-up">
-      <span class="info-bloc-title">Contact</span>
-      <p>+33 (0)1 47 XX XX XX<br>contact@koen-paris.fr<br><br>Pour les événements privés<br>et privatisations :<br>events@koen-paris.fr</p>
+
+    <div class="fade-up">
+      <span class="info-titre">📞 Contact</span>
+      <div class="info-content">
+        01 43 XX XX XX<br>
+        contact@fourdantan.fr<br><br>
+        Commandes spéciales :<br>
+        À passer 48h à l'avance<br>
+        en boutique ou par téléphone.<br><br>
+        <strong style="color:var(--ocre); opacity:1;">Livraison</strong> disponible le samedi matin sur demande.
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">Kōen · 光縁</div>
-    <div class="footer-socials">
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-    </div>
-    <span class="footer-copy">© 2024 Kōen Paris · Tous droits réservés</span>
+    <span class="footer-logo">🥖 Au Four d'Antan</span>
+    <span class="footer-copy">© 2024 Au Four d'Antan · Paris 6e · Tous droits réservés</span>
   </footer>
 
   <script>
-    // Curseur custom
-    const cursor = document.getElementById('cursor');
-    const cursorRing = document.getElementById('cursorRing');
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      cursorRing.style.left = e.clientX + 'px';
-      cursorRing.style.top = e.clientY + 'px';
-    });
-
     // Nav scroll
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
+      nav.classList.toggle('scrolled', window.scrollY > 40);
     });
-
-    // Hero parallax léger
-    const heroBg = document.getElementById('heroBg');
-    heroBg.classList.add('loaded');
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY;
-      if (scrolled < window.innerHeight) {
-        heroBg.style.transform = `translateY(${scrolled * 0.25}px)`;
-      }
-    });
-
-    // Onglets menus
-    function switchTab(btn, panelId) {
-      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('panel-' + panelId).classList.add('active');
-    }
 
     // Animations scroll
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const els = entry.target.parentElement.querySelectorAll('.fade-up:not(.visible)');
-          els.forEach((el, idx) => {
-            setTimeout(() => el.classList.add('visible'), idx * 120);
+          const siblings = entry.target.closest('section')?.querySelectorAll('.fade-up') || [entry.target];
+          siblings.forEach((el, i) => {
+            setTimeout(() => el.classList.add('visible'), i * 100);
           });
-          entry.target.classList.add('visible');
         }
       });
     }, { threshold: 0.08 });
